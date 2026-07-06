@@ -15,17 +15,26 @@ def decide_after_grading(state: AgentState) -> str:
     return "generate"  # out of retries - generate from whatever we have (or refuse)
 
 
+def route_input(state: AgentState) -> str:
+    return "analyze_image" if state["image_path"] else "plan_queries"
+
+
 def build_graph():
     g = StateGraph(AgentState)
+    g.add_node("analyze_image", nodes.analyze_image)
+    g.add_node("plan_queries", nodes.plan_queries)
     g.add_node("retrieve", nodes.retrieve)
     g.add_node("grade", nodes.grade)
     g.add_node("rewrite", nodes.rewrite)
     g.add_node("generate", nodes.generate)
 
-    g.set_entry_point("retrieve")
+    g.set_conditional_entry_point(route_input,
+                                  {"analyze_image": "analyze_image", "plan_queries": "plan_queries"})
+    g.add_edge("analyze_image", "plan_queries")
+    g.add_edge("plan_queries", "retrieve")
     g.add_edge("retrieve", "grade")
     g.add_conditional_edges("grade", decide_after_grading,
                             {"generate": "generate", "rewrite": "rewrite"})
-    g.add_edge("rewrite", "retrieve")   # the loop: new queries -> search again
+    g.add_edge("rewrite", "retrieve")
     g.add_edge("generate", END)
     return g.compile()

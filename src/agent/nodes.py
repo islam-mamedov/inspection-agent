@@ -1,6 +1,7 @@
 import chromadb
 from src.agent.state import AgentState
 from src.agent.llm import llm_fast, llm_main
+from src.tools.defect_detector import detect_defects
 
 client = chromadb.PersistentClient(path="data/chroma")
 collection = client.get_collection("standards")
@@ -65,17 +66,28 @@ def rewrite(state: AgentState) -> dict:
 GENERATE_PROMPT = """You are an assistant for concrete structure inspection, answering
 STRICTLY from the provided excerpts of EM 1110-2-2002.
 
-Question: {question}
+{findings_block}Question: {question}
 
 Excerpts:
 {context}
 
 Rules:
 1. Answer using ONLY information from the excerpts above.
-2. After every factual claim, cite the section in brackets, e.g. [§3-2] or [§6-22].
-3. If the excerpts do not contain enough information to answer, say exactly:
+2. If defect detection findings are present, structure your answer as an inspection report:
+   (a) state what the detection model found;
+   (b) present the manual's guidance for those defect types — if the repair choice depends
+       on conditions the model cannot determine (e.g. active vs dormant crack, pattern vs
+       isolated, water condition), present the options CONDITIONALLY ("If the cracks are
+       dormant and isolated with no water present, the manual recommends...");
+   (c) end with a short "Field verification needed" list of the conditions an inspector
+       must determine on site to finalize the repair selection.
+   Missing classification info is NOT a reason to refuse when the manual's decision
+   framework itself can be presented.
+3. After every factual claim from the excerpts, cite the section in brackets, e.g. [§3-2].
+4. Refer to detection results as "the defect detection model found..." - these come
+   from a computer vision model, not the manual.
+5. If the excerpts do not contain enough information, say exactly:
    "The available documents do not contain sufficient information to answer this."
-   Do not guess. Do not use outside knowledge.
 
 Answer:"""
 
@@ -83,8 +95,38 @@ Answer:"""
 def generate(state: AgentState) -> dict:
     if not state["relevant"]:
         return {"answer": "The available documents do not contain sufficient information to answer this."}
+    findings_block = ""
+    if state["defect_findings"] and state["defect_findings"].get("defects_found", 0) > 0:
+        import json as _json
+        findings_block = f"Defect detection model findings for the uploaded image:\n{_json.dumps(state['defect_findings']['findings'], indent=2)}\n\n"
     context = "\n\n---\n\n".join(c["text"] for c in state["relevant"])
     answer = llm_main.invoke(GENERATE_PROMPT.format(
-        question=state["question"], context=context
+        findings_block=findings_block, question=state["question"], context=context
     )).content
     return {"answer": answer}
+
+def analyze_image(state: AgentState) -> dict:
+    """Run the trained CV model on the uploaded image."""
+    findings = detect_defects(state["image_path"])
+    return {"defect_findings": findings}
+
+
+def plan_queries(state: AgentState) -> dict:
+    """Turn CV findings + question into targeted search queries."""
+    f = state["defect_findings"]
+    if not f or f["defects_found"] == 0:
+        return {"queries": [state["question"]]}
+
+    # summarize findings: {"crack": "medium", "spalling": "high"} style
+    worst = {}
+    rank = {"low": 0, "medium": 1, "high": 2}
+    for d in f["findings"]:
+        t = d["defect_type"]
+        if t not in worst or rank[d["severity"]] > rank[worst[t]]:
+            worst[t] = d["severity"]
+
+    queries = [state["question"]]
+    for defect, sev in worst.items():
+        queries.append(f"{defect} in concrete causes evaluation repair methods")
+        queries.append(f"repair method selection for {defect} {sev} severity")
+    return {"queries": queries[:5]}

@@ -1,4 +1,5 @@
 from ultralytics import YOLO
+import os
 
 MODEL_PATH = "models/YOLOv8s_v24.pt"
 CONF_THRESHOLD = 0.4
@@ -27,6 +28,15 @@ def severity_heuristic(cls_name: str, conf: float, bbox: list, img_w: int, img_h
 
 def detect_defects(image_path: str) -> dict:
     """Run the trained detector. Returns structured findings for the agent."""
+    if not os.path.exists(image_path):
+        return {
+            "image": image_path,
+            "defects_found": 0,
+            "findings": [],
+            "error": f"Image file not found: {image_path}",
+            "model": "YOLOv8s (fine-tuned, 1770-image structural defect dataset)",
+        }
+
     model = _get_model()
     results = model(image_path, conf=CONF_THRESHOLD, verbose=False)
     r = results[0]
