@@ -739,22 +739,44 @@
     "id": "u04",
     "type": "unanswerable",
     "question": "What welding procedure should be used to repair steel bridge girders?",
-    "answer": "",
-    "kept_sections": [],
-    "kept_ids": [],
+    "answer": "The defect detection model found damage to steel bridge girders. According to the manual, if the steel girder is damaged, it may need to be replaced [\u00a75-3]. The easiest method of replacing reinforcement is to cut out the damaged area and splice in replacement bars [\u00a75-3]. A conventional lap splice is preferred, and the requirements for length of lap should conform to the requirements of ACI 318 [\u00a75-3]. If a welded splice is used, it should also be performed in accordance with ACI 318, but butt welding should be avoided because of the high degree of skill required to perform a full penetration weld, and high-strength steel should not be welded [\u00a75-3].\n\nIf the cracks are present, the manual recommends using additional reinforcement, such as conventional reinforcement or prestressing steel, to repair the cracked concrete section [\u00a76-2]. The reinforcing bars can be spaced to suit the needs of the repair, and they can be placed in any desired pattern, depending on the design criteria and the location of the in-place reinforcement [\u00a76-2].\n\nField verification needed:\n- Type of damage to the steel girder\n- Location and extent of the damage\n- Presence of cracks and their characteristics (dormant or active, isolated or pattern)\n- Water conditions\n- Design criteria and location of in-place reinforcement",
+    "kept_sections": [
+      "4-7",
+      "5-3",
+      "6-2",
+      "8-3"
+    ],
+    "kept_ids": [
+      "em2002_5-3_part3",
+      "em2002_4-7_part1",
+      "em2002_8-3_part16",
+      "em2002_6-2_part0",
+      "em2002_5-3_part4"
+    ],
     "rewrites": 0,
-    "latency_s": 0,
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kwm7kbwcemxa4xcngxfxwp8e` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98812, Requested 3237. Please try again in 29m30.336s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    "latency_s": 4.1,
+    "error": null
   },
   {
     "id": "u05",
     "type": "unanswerable",
     "question": "What causes D-cracking in concrete?",
-    "answer": "",
-    "kept_sections": [],
-    "kept_ids": [],
+    "answer": "The defect detection model found D-cracking in the concrete. \nD-cracking is a series of cracks in concrete near and roughly parallel to joints, edges, and structural cracks [\u00a79-3 Concrete Repair Report]. \nIf the cracks are active, the manual recommends considering the mechanism causing the cracking and the expected future movement of the crack to select a suitable repair material and method [\u00a74-7 Repair of Cracking]. \nIf the cracks are dormant and the concrete is not exposed to water, the manual suggests that filling the cracks with a high-strength material such as epoxy may be an option [\u00a74-7 Repair of Cracking]. \nHowever, if the cracks are caused by incorrect spacing of contraction joints, filling the cracks with a high-strength material will only cause new cracking to occur as the concrete goes through its next contraction cycle [\u00a74-7 Repair of Cracking]. \nThe cause of D-cracking is not explicitly stated in the provided excerpts, but it usually starts in the lower part of a concrete slab adjacent to joints, where moisture accumulates, and progresses away from the corners of the slab [\u00a72-3 Condition Survey]. \n\nField verification needed: \n- Determine if the cracks are active or dormant\n- Assess the moisture environment of the crack\n- Evaluate the degree of restraint for the repair material\n- Check if the cracking is caused by incorrect spacing of contraction joints\n- Verify the extent and depth of the cracking",
+    "kept_sections": [
+      "2-3",
+      "3-2",
+      "4-7",
+      "9-3"
+    ],
+    "kept_ids": [
+      "em2002_2-3_part1",
+      "em2002_9-3_part14",
+      "em2002_9-3_part16",
+      "em2002_4-7_part0",
+      "em2002_3-2_part23"
+    ],
     "rewrites": 0,
-    "latency_s": 0,
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kwm7kbwcemxa4xcngxfxwp8e` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98141, Requested 2924. Please try again in 15m20.16s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    "latency_s": 3.7,
+    "error": null
   }
 ]
