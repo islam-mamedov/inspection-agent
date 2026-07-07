@@ -7,8 +7,11 @@ MIN_RELEVANT = 2  # fewer than this = weak retrieval -> try rewriting
 
 
 def decide_after_grading(state: AgentState) -> str:
-    return "generate"  # ABLATION: rewrite loop disabled
-
+    if len(state["relevant"]) >= MIN_RELEVANT:
+        return "generate"
+    if state["rewrite_count"] < MAX_REWRITES:
+        return "rewrite"
+    return "generate"
 
 def route_input(state: AgentState) -> str:
     return "analyze_image" if state["image_path"] else "plan_queries"
