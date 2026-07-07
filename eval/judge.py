@@ -47,7 +47,7 @@ for r in results:
     # faithfulness via LLM judge (only for non-refusals)
     faithful = None
     if not refused and r["kept_ids"]:
-        ctx = "\n\n".join(chunks[cid]["text"][:1500] for cid in r["kept_ids"][:5] if cid in chunks)
+        ctx = "\n\n".join(chunks[cid]["text"][:3000] for cid in r["kept_ids"][:5] if cid in chunks)
         verdict = llm_fast.invoke(FAITH_PROMPT.format(context=ctx, answer=r["answer"])).content.strip().lower()
         faithful = verdict.startswith("faithful")
         time.sleep(2)

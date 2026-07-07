@@ -660,23 +660,53 @@
     "id": "i10",
     "type": "image",
     "question": "Does the concrete in this image require immediate repair?",
-    "answer": "",
-    "kept_sections": [],
-    "kept_ids": [],
+    "answer": "Inspection Report:\n\nThe defect detection model found a crack with a confidence of 0.61, classified as low severity, with a bounding box at coordinates (300, 228, 447, 288).\n\nAccording to the manual, preventing concrete deterioration is much easier and more economical than repairing deteriorated concrete [\u00a77-1 General]. The primary types of maintenance for concrete include timely repair of cracks and spalls [\u00a77-1 General]. However, the manual does not provide specific guidance on the repair of cracks based on their severity. \n\nIf the crack is dormant and isolated with no water present, the manual recommends timely repair [\u00a77-1 General]. If the crack is active or has water present, a more detailed investigation may be required to determine the cause of the crack and the appropriate repair method [\u00a79-1 General].\n\nField verification needed:\n- Determine if the crack is dormant or active\n- Check for water presence\n- Assess the pattern and isolation of the crack\n- Evaluate the environment and potential causes of deterioration",
+    "kept_sections": [
+      "1-5",
+      "4-7",
+      "4-8",
+      "5-1",
+      "5-3",
+      "6-1",
+      "7-1",
+      "9-1",
+      "9-2",
+      "9-3"
+    ],
+    "kept_ids": [
+      "em2002_6-1_part0",
+      "em2002_7-1_part0",
+      "em2002_5-3_part0",
+      "em2002_5-1_part0",
+      "em2002_9-1_part0",
+      "em2002_9-2_part0",
+      "em2002_1-5_part0",
+      "em2002_4-7_part0",
+      "em2002_9-3_part14",
+      "em2002_fig4-3",
+      "em2002_4-7_part1",
+      "em2002_4-8_part1"
+    ],
     "rewrites": 0,
-    "latency_s": 0,
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kwm7kbwcemxa4xcngxfxwp8e` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99040, Requested 4737. Please try again in 54m23.328s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    "latency_s": 6.2,
+    "error": null
   },
   {
     "id": "u01",
     "type": "unanswerable",
     "question": "What torque should be applied to anchor bolts in concrete repair?",
-    "answer": "",
-    "kept_sections": [],
-    "kept_ids": [],
+    "answer": "The available documents do not contain sufficient information to answer this.",
+    "kept_sections": [
+      "5-3",
+      "8-6"
+    ],
+    "kept_ids": [
+      "em2002_5-3_part5",
+      "em2002_8-6_part4"
+    ],
     "rewrites": 0,
-    "latency_s": 0,
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kwm7kbwcemxa4xcngxfxwp8e` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99006, Requested 1750. Please try again in 10m53.184s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    "latency_s": 7.1,
+    "error": null
   },
   {
     "id": "u02",
@@ -693,12 +723,17 @@
     "id": "u03",
     "type": "unanswerable",
     "question": "How much does epoxy injection repair cost per meter of crack?",
-    "answer": "",
-    "kept_sections": [],
-    "kept_ids": [],
+    "answer": "The available documents do not contain sufficient information to answer this. [\u00a76-22]",
+    "kept_sections": [
+      "6-22"
+    ],
+    "kept_ids": [
+      "em2002_6-22_part0",
+      "em2002_6-22_part3"
+    ],
     "rewrites": 0,
-    "latency_s": 0,
-    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kwm7kbwcemxa4xcngxfxwp8e` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98844, Requested 1897. Please try again in 10m40.224s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+    "latency_s": 2.5,
+    "error": null
   },
   {
     "id": "u04",

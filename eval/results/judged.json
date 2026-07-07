@@ -6,7 +6,7 @@
     "retrieval_hit": true,
     "refusal_ok": true,
     "citation_ok": true,
-    "faithful": false,
+    "faithful": true,
     "rewrites": 0,
     "latency_s": 2.9
   },
@@ -237,7 +237,7 @@
     "retrieval_hit": true,
     "refusal_ok": true,
     "citation_ok": true,
-    "faithful": false,
+    "faithful": true,
     "rewrites": 0,
     "latency_s": 65.1
   },
@@ -303,7 +303,7 @@
     "retrieval_hit": true,
     "refusal_ok": true,
     "citation_ok": true,
-    "faithful": false,
+    "faithful": true,
     "rewrites": 0,
     "latency_s": 50.3
   },
@@ -321,12 +321,24 @@
   {
     "id": "i10",
     "type": "image",
-    "status": "ERROR"
+    "status": "ok",
+    "retrieval_hit": null,
+    "refusal_ok": true,
+    "citation_ok": true,
+    "faithful": false,
+    "rewrites": 0,
+    "latency_s": 6.2
   },
   {
     "id": "u01",
     "type": "unanswerable",
-    "status": "ERROR"
+    "status": "ok",
+    "retrieval_hit": null,
+    "refusal_ok": true,
+    "citation_ok": null,
+    "faithful": null,
+    "rewrites": 0,
+    "latency_s": 7.1
   },
   {
     "id": "u02",
@@ -342,7 +354,13 @@
   {
     "id": "u03",
     "type": "unanswerable",
-    "status": "ERROR"
+    "status": "ok",
+    "retrieval_hit": null,
+    "refusal_ok": true,
+    "citation_ok": true,
+    "faithful": null,
+    "rewrites": 0,
+    "latency_s": 2.5
   },
   {
     "id": "u04",
