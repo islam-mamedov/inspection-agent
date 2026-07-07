@@ -1,0 +1,7 @@
+gradio
+ultralytics
+langgraph
+langchain-groq
+langchain-google-genai
+chromadb
+python-dotenv
