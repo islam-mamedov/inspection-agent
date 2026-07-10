@@ -31,8 +31,7 @@ When the manual does not support an answer, the system is designed to say that t
 
 The deployed Gradio application includes ready-made examples for crack, corrosion, spalling, text-only questions, and an intentionally unsupported question.
 
-**Try it here:**  
-https://huggingface.co/spaces/islam-mamedov/inspection-agent
+[Open the live inspection demo](https://huggingface.co/spaces/islam-mamedov/inspection-agent)
 
 ## Architecture
 
@@ -245,4 +244,4 @@ API keys must be stored in `.env` locally or as Hugging Face Space secrets. Do n
 ## Author
 
 **Islam Mamedov**  
-Graduate Computer Science — Artificial Intelligence and Cybersecurity
+Bachelor of Computer Science — Artificial Intelligence and Cybersecurity
