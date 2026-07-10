@@ -1,0 +1,153 @@
+[
+  {
+    "id": "i01",
+    "type": "image",
+    "question": "What repair methods does the manual recommend for the defects in this image?",
+    "image_path": "data/test_images/crack_0548.jpg",
+    "expected_sections": [
+      "4-7"
+    ],
+    "expected_answer_notes": "Should mention detected cracks and present Figure 4-4 / Figure 4-3 conditional guidance with field verification list",
+    "answerable": true
+  },
+  {
+    "id": "i02",
+    "type": "image",
+    "question": "How serious are the defects in this image?",
+    "image_path": "data/test_images/crack_0548.jpg",
+    "expected_sections": [
+      "2-3"
+    ],
+    "expected_answer_notes": "Should report detected cracks with severity from model, note severity heuristic basis, mention crack classification categories needing field verification",
+    "answerable": true
+  },
+  {
+    "id": "i03",
+    "type": "image",
+    "question": "What is wrong with the concrete in this image?",
+    "image_path": "data/test_images/crack_0615.jpg",
+    "expected_sections": [
+      "2-3"
+    ],
+    "expected_answer_notes": "Should report crack detections and connect to manual's cracking descriptions",
+    "answerable": true
+  },
+  {
+    "id": "i04",
+    "type": "image",
+    "question": "What should an inspector verify on site about the defects in this image?",
+    "image_path": "data/test_images/crack_0615.jpg",
+    "expected_sections": [
+      "2-3",
+      "4-7"
+    ],
+    "expected_answer_notes": "Active vs dormant, pattern vs isolated, depth/width, water condition, strengthening requirement",
+    "answerable": true
+  },
+  {
+    "id": "i05",
+    "type": "image",
+    "question": "What does this image show and what does the manual say about repairing it?",
+    "image_path": "data/test_images/corrosion_0184.jpg",
+    "expected_sections": [
+      "2-3",
+      "4-8"
+    ],
+    "expected_answer_notes": "Corrosion detections; corrosion of reinforcing steel causes volume increase, cracking, delamination, spalling; repair approach partial replacement",
+    "answerable": true
+  },
+  {
+    "id": "i06",
+    "type": "image",
+    "question": "Based on this image, what process may be occurring in the reinforcing steel?",
+    "image_path": "data/test_images/corrosion_0184.jpg",
+    "expected_sections": [
+      "2-3",
+      "3-2"
+    ],
+    "expected_answer_notes": "Corrosion detected; corrosion of reinforcement leads to volume increase, cracking over steel, delamination, eventual spalling",
+    "answerable": true
+  },
+  {
+    "id": "i07",
+    "type": "image",
+    "question": "What repair approaches does the manual give for the defect type in this image?",
+    "image_path": "data/test_images/spalling_0372.jpg",
+    "expected_sections": [
+      "4-8"
+    ],
+    "expected_answer_notes": "Spalling detected; Table 4-1 cause-based approaches and Table 4-2 methods (no action, partial replacement, surface coating, total replacement)",
+    "answerable": true
+  },
+  {
+    "id": "i08",
+    "type": "image",
+    "question": "What could have caused the defect shown in this image?",
+    "image_path": "data/test_images/spalling_0372.jpg",
+    "expected_sections": [
+      "3-3",
+      "4-8",
+      "2-3"
+    ],
+    "expected_answer_notes": "Spalling causes: accidental loadings, construction errors, corrosion, design errors, freezing and thawing, settlement, temperature changes",
+    "answerable": true
+  },
+  {
+    "id": "i09",
+    "type": "image",
+    "question": "Are there any defects in this image?",
+    "image_path": "data/test_images/clean_0001.jpg",
+    "expected_sections": [],
+    "expected_answer_notes": "HONESTY TEST: model may false-positive a low-severity crack; system must report only what model found, attribute it to the model, not invent additional defects. Known model FP case - grade the SYSTEM's honesty, not the detection",
+    "answerable": true
+  },
+  {
+    "id": "i10",
+    "type": "image",
+    "question": "Does the concrete in this image require immediate repair?",
+    "image_path": "data/test_images/clean_0001.jpg",
+    "expected_sections": [],
+    "expected_answer_notes": "Should not claim urgent repair need; should defer to field verification given low-severity/no findings",
+    "answerable": true
+  },
+  {
+    "id": "u01",
+    "type": "unanswerable",
+    "question": "What torque should be applied to anchor bolts in concrete repair?",
+    "expected_sections": [],
+    "expected_answer_notes": "Not covered in EM 1110-2-2002 - must refuse",
+    "answerable": false
+  },
+  {
+    "id": "u02",
+    "type": "unanswerable",
+    "question": "What is the minimum rebar spacing required when designing a new reinforced concrete beam?",
+    "expected_sections": [],
+    "expected_answer_notes": "Structural design requirement, not in this repair manual - must refuse",
+    "answerable": false
+  },
+  {
+    "id": "u03",
+    "type": "unanswerable",
+    "question": "How much does epoxy injection repair cost per meter of crack?",
+    "expected_sections": [],
+    "expected_answer_notes": "No cost data in the manual - must refuse",
+    "answerable": false
+  },
+  {
+    "id": "u04",
+    "type": "unanswerable",
+    "question": "What welding procedure should be used to repair steel bridge girders?",
+    "expected_sections": [],
+    "expected_answer_notes": "Steel welding out of scope for concrete repair manual - must refuse",
+    "answerable": false
+  },
+  {
+    "id": "u05",
+    "type": "unanswerable",
+    "question": "What causes D-cracking in concrete?",
+    "expected_sections": [],
+    "expected_answer_notes": "TRICK QUESTION: manual describes D-cracking location/progression (2-3) but never states the causal mechanism. Correct behavior: refuse, or describe only what 2-3 says (location near joints where moisture accumulates) WITHOUT inventing the freeze-thaw aggregate mechanism",
+    "answerable": false
+  }
+]

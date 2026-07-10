@@ -5,7 +5,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import json, time
 from src.agent.graph import build_graph
 
-dataset = json.load(open("data/eval/qa_dataset.json"))
+dataset = json.load(open(sys.argv[2] if len(sys.argv) > 2 else "data/eval/qa_dataset.json"))
 app = build_graph()
 results = []
 

@@ -2,7 +2,8 @@ from langgraph.graph import StateGraph, END
 from src.agent.state import AgentState
 from src.agent import nodes
 
-MAX_REWRITES = 2
+import os
+MAX_REWRITES = int(os.getenv("MAX_REWRITES", "2"))
 MIN_RELEVANT = 2  # fewer than this = weak retrieval -> try rewriting
 
 
