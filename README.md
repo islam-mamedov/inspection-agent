@@ -245,3 +245,10 @@ API keys must be stored in `.env` locally or as Hugging Face Space secrets. Do n
 
 **Islam Mamedov**  
 Bachelor of Computer Science — Artificial Intelligence and Cybersecurity
+
+## License
+
+This project is released under the [MIT License](LICENSE).
+
+```text
+Copyright (c) 2026 Islam Mamedov
