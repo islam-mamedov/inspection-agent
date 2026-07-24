@@ -70,27 +70,167 @@ DEMO_CASES = {
     ),
 }
 
+# Keep the interface visually consistent when Hugging Face or Gradio is in
+# dark mode. The application itself intentionally uses a light inspection UI,
+# so the dark-mode variables mirror the light-mode palette.
+APP_THEME = gr.themes.Base(
+    primary_hue=gr.themes.colors.blue,
+    secondary_hue=gr.themes.colors.blue,
+    neutral_hue=gr.themes.colors.slate,
+).set(
+    body_background_fill="#f3f6fa",
+    body_background_fill_dark="#f3f6fa",
+    body_text_color="#0d1728",
+    body_text_color_dark="#0d1728",
+    body_text_color_subdued="#66758a",
+    body_text_color_subdued_dark="#66758a",
+
+    background_fill_primary="#ffffff",
+    background_fill_primary_dark="#ffffff",
+    background_fill_secondary="#f9fbfd",
+    background_fill_secondary_dark="#f9fbfd",
+
+    border_color_primary="#dce4ee",
+    border_color_primary_dark="#dce4ee",
+    border_color_accent="#2f66b1",
+    border_color_accent_dark="#2f66b1",
+
+    block_background_fill="#ffffff",
+    block_background_fill_dark="#ffffff",
+    block_border_color="#dce4ee",
+    block_border_color_dark="#dce4ee",
+    block_label_background_fill="#ffffff",
+    block_label_background_fill_dark="#ffffff",
+    block_label_border_color="#dce4ee",
+    block_label_border_color_dark="#dce4ee",
+    block_label_text_color="#42536a",
+    block_label_text_color_dark="#42536a",
+    block_title_text_color="#42536a",
+    block_title_text_color_dark="#42536a",
+
+    panel_background_fill="#ffffff",
+    panel_background_fill_dark="#ffffff",
+    panel_border_color="#dce4ee",
+    panel_border_color_dark="#dce4ee",
+
+    accordion_text_color="#40536b",
+    accordion_text_color_dark="#40536b",
+
+    input_background_fill="#fbfcfe",
+    input_background_fill_dark="#fbfcfe",
+    input_background_fill_focus="#ffffff",
+    input_background_fill_focus_dark="#ffffff",
+    input_background_fill_hover="#ffffff",
+    input_background_fill_hover_dark="#ffffff",
+    input_border_color="#d3deea",
+    input_border_color_dark="#d3deea",
+    input_border_color_focus="#2f66b1",
+    input_border_color_focus_dark="#2f66b1",
+    input_border_color_hover="#b7c7da",
+    input_border_color_hover_dark="#b7c7da",
+    input_placeholder_color="#9aa7b8",
+    input_placeholder_color_dark="#9aa7b8",
+
+    button_primary_background_fill="#2f66b1",
+    button_primary_background_fill_dark="#2f66b1",
+    button_primary_background_fill_hover="#275a9e",
+    button_primary_background_fill_hover_dark="#275a9e",
+    button_primary_border_color="#2f66b1",
+    button_primary_border_color_dark="#2f66b1",
+    button_primary_text_color="#ffffff",
+    button_primary_text_color_dark="#ffffff",
+
+    button_secondary_background_fill="#ffffff",
+    button_secondary_background_fill_dark="#ffffff",
+    button_secondary_background_fill_hover="#f7f9fc",
+    button_secondary_background_fill_hover_dark="#f7f9fc",
+    button_secondary_border_color="#cfdae7",
+    button_secondary_border_color_dark="#cfdae7",
+    button_secondary_text_color="#4d5f75",
+    button_secondary_text_color_dark="#4d5f75",
+
+    link_text_color="#2f66b1",
+    link_text_color_dark="#2f66b1",
+    code_background_fill="#eef3f8",
+    code_background_fill_dark="#eef3f8",
+)
+
 
 CSS = """
 :root {
-  --ink: #0d1728;
-  --navy: #17345f;
-  --blue: #2f66b1;
-  --blue-soft: #eaf2ff;
-  --amber: #c87818;
-  --paper: #ffffff;
-  --canvas: #f3f6fa;
-  --line: #dce4ee;
-  --muted: #66758a;
-  --success: #17734a;
-  --danger: #b33a3a;
+  --cia-ink: #0d1728;
+  --cia-navy: #17345f;
+  --cia-blue: #2f66b1;
+  --cia-blue-soft: #eaf2ff;
+  --cia-amber: #c87818;
+  --cia-paper: #ffffff;
+  --cia-canvas: #f3f6fa;
+  --cia-line: #dce4ee;
+  --cia-muted: #66758a;
+  --cia-success: #17734a;
+  --cia-danger: #b33a3a;
+}
+
+
+/*
+  Hugging Face follows the viewer's system/site theme. These overrides keep
+  this deliberately light interface readable even when the surrounding page
+  is dark. Both the normal and "-dark" Gradio variables are pinned here as a
+  second layer of protection for embedded Spaces.
+*/
+html.dark,
+body.dark,
+.gradio-container.dark,
+.dark .gradio-container,
+[data-theme="dark"] .gradio-container {
+  color-scheme: light !important;
+
+  --body-background-fill: #f3f6fa !important;
+  --body-background-fill-dark: #f3f6fa !important;
+  --body-text-color: #0d1728 !important;
+  --body-text-color-dark: #0d1728 !important;
+  --body-text-color-subdued: #66758a !important;
+  --body-text-color-subdued-dark: #66758a !important;
+
+  --background-fill-primary: #ffffff !important;
+  --background-fill-primary-dark: #ffffff !important;
+  --background-fill-secondary: #f9fbfd !important;
+  --background-fill-secondary-dark: #f9fbfd !important;
+
+  --block-background-fill: #ffffff !important;
+  --block-background-fill-dark: #ffffff !important;
+  --block-border-color: #dce4ee !important;
+  --block-border-color-dark: #dce4ee !important;
+  --block-label-background-fill: #ffffff !important;
+  --block-label-background-fill-dark: #ffffff !important;
+  --block-label-text-color: #42536a !important;
+  --block-label-text-color-dark: #42536a !important;
+  --block-title-text-color: #42536a !important;
+  --block-title-text-color-dark: #42536a !important;
+
+  --panel-background-fill: #ffffff !important;
+  --panel-background-fill-dark: #ffffff !important;
+  --panel-border-color: #dce4ee !important;
+  --panel-border-color-dark: #dce4ee !important;
+
+  --input-background-fill: #fbfcfe !important;
+  --input-background-fill-dark: #fbfcfe !important;
+  --input-border-color: #d3deea !important;
+  --input-border-color-dark: #d3deea !important;
+  --input-placeholder-color: #9aa7b8 !important;
+  --input-placeholder-color-dark: #9aa7b8 !important;
+
+  --button-secondary-background-fill: #ffffff !important;
+  --button-secondary-background-fill-dark: #ffffff !important;
+  --button-secondary-text-color: #4d5f75 !important;
+  --button-secondary-text-color-dark: #4d5f75 !important;
 }
 
 html, body, .gradio-container {
   margin: 0 !important;
   min-height: 100% !important;
-  background: var(--canvas) !important;
-  color: var(--ink) !important;
+  background: var(--cia-canvas) !important;
+  color: var(--cia-ink) !important;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
 }
 
@@ -105,7 +245,7 @@ footer { display: none !important; }
   min-height: 100vh;
   background:
     radial-gradient(circle at 92% 0%, rgba(47, 102, 177, 0.10), transparent 27rem),
-    var(--canvas);
+    var(--cia-canvas);
 }
 
 /* Header */
@@ -220,7 +360,7 @@ footer { display: none !important; }
   height: 24px;
   border-radius: 50%;
   color: white;
-  background: var(--navy);
+  background: var(--cia-navy);
   font-size: 0.70rem;
   font-weight: 800;
 }
@@ -237,7 +377,7 @@ footer { display: none !important; }
   height: calc(100vh - 162px);
   min-height: 680px;
   overflow: hidden;
-  border: 1px solid var(--line) !important;
+  border: 1px solid var(--cia-line) !important;
   border-radius: 16px !important;
   background: rgba(255, 255, 255, 0.96) !important;
   box-shadow: 0 12px 35px rgba(21, 45, 76, 0.08) !important;
@@ -261,7 +401,7 @@ footer { display: none !important; }
 
 .section-heading h2 {
   margin: 0;
-  color: var(--ink);
+  color: var(--cia-ink);
   font-size: 0.98rem;
   font-weight: 750;
   letter-spacing: -0.01em;
@@ -269,7 +409,7 @@ footer { display: none !important; }
 
 .section-heading p {
   margin: 4px 0 0;
-  color: var(--muted);
+  color: var(--cia-muted);
   font-size: 0.74rem;
   line-height: 1.45;
 }
@@ -279,7 +419,7 @@ footer { display: none !important; }
   align-items: center;
   gap: 7px;
   margin-bottom: 5px;
-  color: var(--blue);
+  color: var(--cia-blue);
   font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.09em;
@@ -291,7 +431,7 @@ footer { display: none !important; }
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--amber);
+  background: var(--cia-amber);
 }
 
 .field-label {
@@ -315,13 +455,40 @@ footer { display: none !important; }
   background: transparent !important;
 }
 
+
+/* Explicit text protection for Gradio internals in dark mode */
+#image-input,
+#image-input button,
+#image-input label,
+#image-input span,
+#image-input p,
+#demo-select,
+#demo-select input,
+#demo-select button,
+#question-input,
+#question-input textarea {
+  color: var(--cia-ink) !important;
+}
+
+#image-input svg,
+#demo-select svg {
+  color: var(--cia-muted) !important;
+  stroke: currentColor !important;
+}
+
+#question-input textarea::placeholder,
+#demo-select input::placeholder {
+  color: #9aa7b8 !important;
+  opacity: 1 !important;
+}
+
 #demo-select, #question-input {
   border-radius: 10px !important;
 }
 
 #demo-select input,
 #question-input textarea {
-  color: var(--ink) !important;
+  color: var(--cia-ink) !important;
   background: #fbfcfe !important;
   border-color: #d3deea !important;
   font-size: 0.86rem !important;
@@ -408,7 +575,7 @@ footer { display: none !important; }
   background: #fff8ec;
 }
 .status-pill.running .status-dot {
-  background: var(--amber);
+  background: var(--cia-amber);
   box-shadow: 0 0 0 4px rgba(200, 120, 24, 0.12);
   animation: pulse 1.25s infinite;
 }
@@ -418,14 +585,14 @@ footer { display: none !important; }
   border: 1px solid #bfe3d0;
   background: #f1fbf6;
 }
-.status-pill.complete .status-dot { background: var(--success); }
+.status-pill.complete .status-dot { background: var(--cia-success); }
 
 .status-pill.error {
   color: #8d3030;
   border: 1px solid #eccaca;
   background: #fff4f4;
 }
-.status-pill.error .status-dot { background: var(--danger); }
+.status-pill.error .status-dot { background: var(--cia-danger); }
 
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
@@ -439,7 +606,7 @@ footer { display: none !important; }
   overflow-y: auto;
   padding: 17px 19px;
   border: 1px solid #dbe4ee;
-  border-left: 4px solid var(--blue);
+  border-left: 4px solid var(--cia-blue);
   border-radius: 12px;
   color: #1a293d;
   background: #f9fbfd;
@@ -474,7 +641,7 @@ footer { display: none !important; }
 /* Agent activity accordion */
 #activity-accordion {
   margin-top: 11px;
-  border: 1px solid var(--line) !important;
+  border: 1px solid var(--cia-line) !important;
   border-radius: 11px !important;
   background: white !important;
 }
@@ -726,9 +893,9 @@ def run_agent(
 
 
 with gr.Blocks(
-    css=CSS,
-    theme=gr.themes.Base(),
     title=APP_TITLE,
+    theme=APP_THEME,
+    css=CSS,
 ) as demo:
     with gr.Column(elem_id="app-shell"):
         gr.HTML(HEADER_HTML)
@@ -823,4 +990,6 @@ with gr.Blocks(
 
 
 if __name__ == "__main__":
-    demo.launch()
+    demo.launch(
+        show_error=True,
+    )
